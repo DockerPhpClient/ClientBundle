@@ -3,18 +3,18 @@
 namespace Docker\ClientBundle\Tests\DependencyInjection;
 
 use Docker\Client\DockerClient;
-use Docker\ClientBundle\DependencyInjection\DockerClientBundleExtension;
+use Docker\ClientBundle\DependencyInjection\DockerClientExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class DockerClientBundleExtensionTest extends TestCase {
+class DockerClientExtensionTest extends TestCase {
 
     /**
      * @var ContainerBuilder
      */
     private $container;
     /**
-     * @var DockerClientBundleExtension
+     * @var DockerClientExtension
      */
     private $extension;
 
@@ -22,7 +22,7 @@ class DockerClientBundleExtensionTest extends TestCase {
     public function setUp(): void
     {
         $this->container = new ContainerBuilder();
-        $this->extension = new DockerClientBundleExtension();
+        $this->extension = new DockerClientExtension();
     }
 
     public function tearDown(): void
