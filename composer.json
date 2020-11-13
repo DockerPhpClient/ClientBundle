@@ -1,0 +1,24 @@
+{
+    "name": "docker-client/client-bundle",
+    "description": "Symfony bundle for docker-client/client.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "docker-client/client": "^0.2",
+        "php": "^7.2",
+        "symfony/framework-bundle": "^4.4 || ^5.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Docker\\ClientBundle\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Docker\\ClientBundle\\Tests\\": "Tests/"
+        }
+    }
+}
