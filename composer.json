@@ -4,7 +4,7 @@
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
-        "docker-client/client": "^0.2",
+        "docker-client/client": "dev-master",
         "php": "^7.2",
         "symfony/framework-bundle": "^4.4 || ^5.0"
     },

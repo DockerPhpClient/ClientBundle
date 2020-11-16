@@ -38,8 +38,15 @@ class Configuration implements ConfigurationInterface
                         ->defaultValue('unix:///var/run/docker.sock')
                     ->end()
                     ->scalarNode('alias')->defaultValue(null)->end()
+                    ->arrayNode('registries')
+                        ->arrayPrototype('array')
+                            ->children()
+                                ->scalarNode('username')->isRequired()->end()
+                                ->scalarNode('password')->isRequired()->end()
+                            ->end()
+                        ->end()
+                    ->end()
                 ->end()
-            ->end()
             ->end()
         ->end();
 

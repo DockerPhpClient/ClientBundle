@@ -99,4 +99,31 @@ class DockerClientExtensionTest extends TestCase {
             $this->container->get('my_docker_client')
         );
     }
+
+    public function testCreateClientWithRegistries(): void
+    {
+        $config = [
+            'docker_client' => [
+                'clients' => [
+                    'first_client' => [
+                        'remote_socket' => 'unix:///var/run/docker.sock',
+                        'registries' => [
+                            'registry.domain.tld' => [
+                                'username' => 'user',
+                                'password' => 'secret'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->extension->load($config, $this->container);
+        self::assertTrue($this->container->hasAlias('docker_client.client.default'));
+        self::assertTrue($this->container->has('docker_client'));
+        self::assertTrue($this->container->has('docker_client.client.first_client'));
+
+        self::assertInstanceOf(DockerClient::class, $this->container->get('docker_client.client.default'));
+        self::assertInstanceOf(DockerClient::class, $this->container->get('docker_client.client.first_client'));
+    }
 }

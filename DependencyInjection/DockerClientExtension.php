@@ -44,6 +44,7 @@ class DockerClientExtension extends Extension
                 $name,
                 $client['remote_socket'],
                 $client['alias'],
+                $client['registries'],
                 $container
             );
         }
@@ -66,12 +67,14 @@ class DockerClientExtension extends Extension
      * @param $name
      * @param $remote_socket
      * @param $alias
+     * @param array $registries
      * @param ContainerBuilder $container
      */
-    private function createClient($name, $remote_socket, $alias, ContainerBuilder $container): void
+    private function createClient($name, $remote_socket, $alias, array $registries, ContainerBuilder $container): void
     {
         $definition = new Definition('%docker_client.client.class%');
         $definition->addArgument(['remote_socket' => $remote_socket]);
+        $definition->addArgument(['options' => ['registries' => $registries]]);
         $definition->setFactory(array(DockerClientFactory::class, 'create'));
 
         // Add Service to Container
